@@ -17,6 +17,9 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
+    WASABI_ACCESS_KEY_ID: Joi.string().required().description('Wasabi access key id'),
+    WASABI_SECRET_ACCESS_KEY: Joi.string().required().description('Wasabi secret access key'),
+    WASABI_BUCKET_NAME: Joi.string().required().description('Wasabi bucket name'),
   })
   .unknown();
 
@@ -53,5 +56,10 @@ module.exports = {
       },
     },
     from: envVars.EMAIL_FROM,
+  },
+  wasabi: {
+    accessKeyId: envVars.WASABI_ACCESS_KEY_ID,
+    secretKey: envVars.WASABI_SECRET_ACCESS_KEY,
+    bucket: envVars.WASABI_BUCKET_NAME,
   },
 };

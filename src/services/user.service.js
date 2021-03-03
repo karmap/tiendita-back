@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const { statusTypes } = require('../config/status');
 const { User } = require('../models');
 const ApiError = require('../utils/ApiError');
 
@@ -44,7 +45,7 @@ const getUserById = async (id) => {
  * @returns {Promise<User>}
  */
 const getUserByEmail = async (email) => {
-  return User.findOne({ email });
+  return User.findOne({ email, status: statusTypes.ACTIVE });
 };
 
 /**
@@ -76,7 +77,8 @@ const deleteUserById = async (userId) => {
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
-  await user.remove();
+  Object.assign(user, { status: statusTypes.REMOVED });
+  await user.save();
   return user;
 };
 
