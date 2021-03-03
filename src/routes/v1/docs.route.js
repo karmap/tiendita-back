@@ -17,5 +17,8 @@ router.get(
     explorer: true,
   })
 );
+router.get('/openapi.json', (req, res) => {
+  res.json(specs);
+});
 
 module.exports = router;

@@ -19,6 +19,45 @@ components:
         name: fake name
         role: user
 
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        imgUrl:
+          type: string
+        type:
+          type: string
+        color:
+          type: string
+        price:
+          type: number
+        isSoldOut:
+          type: boolean
+        rating:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/Category'
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+
     Token:
       type: object
       properties:
